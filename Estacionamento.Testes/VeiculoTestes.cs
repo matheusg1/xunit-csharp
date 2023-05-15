@@ -7,7 +7,8 @@ namespace Estacionamento.Testes
 {
     public class VeiculoTestes
     {
-        [Fact]
+        [Fact(DisplayName = "Aceleração")]
+        [Trait("Funcionalidade", "Acelerar")]
         public void TestaVeiculoAcelerar()
         {
             //arrange
@@ -18,7 +19,8 @@ namespace Estacionamento.Testes
             Assert.Equal(100, veiculo.VelocidadeAtual);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Freios")]
+        [Trait("Funcionalidade", "Frear")]
         public void TestaVeiculoFrear()
         {
             //arrange
@@ -29,15 +31,21 @@ namespace Estacionamento.Testes
             Assert.Equal(-150, veiculo.VelocidadeAtual);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Tipo de veículo")]
         public void TestaTipoVeiculo()
         {
             //arrange
             var veiculo = new Veiculo();
             //act
-            veiculo.Tipo = (TipoVeiculo) 1;
+            veiculo.Tipo = (TipoVeiculo) 0;
             //assert
             Assert.Equal("Automovel", veiculo.Tipo.ToString());
+        }
+
+        [Fact(DisplayName ="Valida nome proprietário",Skip ="Teste ainda não implementado")]
+        public void ValidaNomeProprietario()
+        {
+
         }
     }
 }
