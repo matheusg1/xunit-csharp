@@ -22,9 +22,8 @@ namespace Estacionamento.Testes
             Assert.Equal(modelo.VelocidadeAtual, veiculo.VelocidadeAtual);
         }
 
-        [Fact(DisplayName = "Aceleração 2")]
-        [Trait("Funcionalidade", "Acelerar")]
-        public void TestaVeiculoAcelerar()
+        [Fact]
+        public void TestaVeiculoAcelerarComParametro10()
         {
             //arrange
             var veiculo = new Veiculo();
@@ -34,9 +33,8 @@ namespace Estacionamento.Testes
             Assert.Equal(100, veiculo.VelocidadeAtual);
         }
 
-        [Fact(DisplayName = "Freios")]
-        [Trait("Funcionalidade", "Frear")]
-        public void TestaVeiculoFrear()
+        [Fact]
+        public void TestaVeiculoFrearComParametro10()
         {
             //arrange
             var veiculo = new Veiculo();
@@ -57,9 +55,28 @@ namespace Estacionamento.Testes
             Assert.Equal("Automovel", veiculo.Tipo.ToString());
         }
 
-        [Fact(DisplayName ="Valida nome proprietário",Skip ="Teste ainda não implementado")]
-        public void ValidaNomeProprietario()
-        {            
+        [Fact(DisplayName ="Valida nome proprietário", Skip ="Teste ainda não implementado")]
+        public void ValidaNomeProprietarioDoVeiculo()
+        {
+        }
+
+        [Fact]
+        public void FichaDeInformacaoDoVeiculo()
+        {
+            //arrange
+            var carro = new Veiculo();
+            carro.Proprietario = "Carlos Silva";
+            carro.Tipo = TipoVeiculo.Automovel;
+            carro.Placa = "ZAP-7419";
+            carro.Cor = "Verde";
+            carro.Modelo = "Variante";
+
+            //act
+            string dados = carro.ToString();
+
+            //assert
+            Assert.Contains("Ficha do Veículo:", dados);
+
         }
     }
 }
