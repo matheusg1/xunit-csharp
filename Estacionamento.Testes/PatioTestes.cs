@@ -9,17 +9,30 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Estacionamento.Testes
 {
-    public class PatioTestes
+    public class PatioTestes : IDisposable
     {
+        private Patio estacionamento;
+        private Veiculo veiculo;
+        public ITestOutputHelper mensagemConsole;
+
+        public PatioTestes(ITestOutputHelper _mensagemConsole)
+        {
+            estacionamento = new Patio();
+            veiculo = new Veiculo();
+            mensagemConsole = _mensagemConsole;
+            mensagemConsole.WriteLine("construtor invocado");
+        }
+
         [Fact]
         public void ValidaFaturamentoDoEstacionamentoComUmVeiculo()
         {
             //arrange
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Junior";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Azul";
@@ -44,8 +57,8 @@ namespace Estacionamento.Testes
         public void ValidaFaturamentoDoEstacionamentoComVariosVeiculos(string proprietario, string placa, string cor, string modelo)
         {
             //arrange
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = cor;
@@ -68,8 +81,8 @@ namespace Estacionamento.Testes
         public void LocalizaVeiculoPatioPelaPlaca(string proprietario, string placa, string cor, string modelo)
         {
             //arrange
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = proprietario;
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = cor;
@@ -88,8 +101,8 @@ namespace Estacionamento.Testes
         public void AlterarDadosDoProprioVeiculo()
         {
             //arrange
-            var estacionamento = new Patio();
-            var veiculo = new Veiculo();
+            //var estacionamento = new Patio();
+            //var veiculo = new Veiculo();
             veiculo.Proprietario = "Jose";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Verde";
@@ -109,6 +122,11 @@ namespace Estacionamento.Testes
 
             //assert
             Assert.Equal(alterado.Cor, veiculoAlterado.Cor);
+        }
+
+        public void Dispose()
+        {
+            mensagemConsole.WriteLine("dispose invocado");
         }
     }
 }
