@@ -17,12 +17,17 @@ namespace Estacionamento.Testes
     {
         private Patio estacionamento;
         private Veiculo veiculo;
+        private Operador operador;
         public ITestOutputHelper mensagemConsole;
 
         public PatioTestes(ITestOutputHelper _mensagemConsole)
         {
             estacionamento = new Patio();
             veiculo = new Veiculo();
+            operador = new Operador();
+            operador.Nome = "Pedro Jorge";
+            estacionamento.OperadorPatio = operador;
+
             mensagemConsole = _mensagemConsole;
             mensagemConsole.WriteLine("construtor invocado");
         }
@@ -32,7 +37,8 @@ namespace Estacionamento.Testes
         {
             //arrange
             //var estacionamento = new Patio();
-            //var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();            
+
             veiculo.Proprietario = "Junior";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Azul";
