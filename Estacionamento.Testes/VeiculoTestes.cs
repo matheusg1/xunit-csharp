@@ -17,8 +17,9 @@ namespace Estacionamento.Testes
             veiculo = new Veiculo();            
         }
 
+
         [Theory(DisplayName = "Aceleração")]
-        [ClassData(typeof(Veiculo))]
+        [ClassData(typeof(Veiculo))]        
         public void TestaVeiculoClass(Veiculo modelo)
         {
             //arrange
@@ -104,7 +105,7 @@ namespace Estacionamento.Testes
         }
 
         [Fact]
-        public void TestaMensagemDeExceçaoDoQuartoCaractereDaPlaca()
+        public void TestaMensagemDeExcecaoDoQuartoCaractereDaPlaca()
         {
             //arrange
             string placa = "ASDF8888";
@@ -112,7 +113,8 @@ namespace Estacionamento.Testes
             //Act & Assert
             var mensagem = Assert.Throws<FormatException>(
                 () => veiculo.Placa = placa
-            );           
+            );
+            Assert.Equal("O 4° caractere deve ser um hífen", mensagem.Message);
         }
 
         public void Dispose()
