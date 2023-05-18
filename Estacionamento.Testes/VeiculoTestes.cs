@@ -89,6 +89,32 @@ namespace Estacionamento.Testes
 
         }
 
+        [Fact]
+        public void TestaNomeProprietarioComMenosDeTresCaracteres()
+        {
+            //arrange
+            string nomeProprietario = "Ab";
+
+            //Assert
+            Assert.Throws<FormatException>(
+                //Act
+                () => veiculo.Proprietario = nomeProprietario
+                );
+
+        }
+
+        [Fact]
+        public void TestaMensagemDeExceçaoDoQuartoCaractereDaPlaca()
+        {
+            //arrange
+            string placa = "ASDF8888";
+            
+            //Act & Assert
+            var mensagem = Assert.Throws<FormatException>(
+                () => veiculo.Placa = placa
+            );           
+        }
+
         public void Dispose()
         {
             mensagemConsole.WriteLine("dispose invocado");            

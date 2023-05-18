@@ -67,7 +67,18 @@ namespace Alura.Estacionamento.Modelos
         public string Modelo { get; set; }
         public string Proprietario
         {
-            get; set;
+            get
+            {
+                return _proprietario;
+            }
+            set
+            {
+                if (value.Length < 3)
+                {
+                    throw new FormatException("Nome de proprietário deve ter no mínimo 3 letras");
+                }
+                _proprietario = value;
+            }
         }
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
@@ -115,7 +126,7 @@ namespace Alura.Estacionamento.Modelos
                 $"Proprietário: {this.Proprietario}\n" +
                 $"Modelo: {this.Modelo}\n" +
                 $"Cor: {this.Cor}\n" +
-                $"Placa: {this.Placa}\n";                
+                $"Placa: {this.Placa}\n";
         }
 
         //Construtor
